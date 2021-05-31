@@ -66,32 +66,30 @@ router.get('/:id', withAuth, (req, res) => {
 });
 
 // Updating concerts stock
-//This is not currently working, fully. It will update the number of tickets left in stock if you add a ticket
-//but it will not restore a ticket if it is deleted from your account, and also it would need to 
-//leave a ticket off if redeemed as well.
+// Currently only for subtacting
 
-// router.put('/:id', withAuth, (req, res) => {
-//     Concert.update(
-//         {
-//             stock: stock
-//         },
-//         {
-//             where: {
-//                 id: req.params.id
-//             }
-//         }
-//     )
-//         .then(dbConcertData => {
-//             if (!dbConcertData) {
-//                 res.status(404).json({ message: 'No post found with this id' });
-//                 return;
-//             }
-//             res.json(dbConcertData);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// })
+router.put('/:id', withAuth, (req, res) => {
+    Concert.update(
+        {
+            stock: req.body.stock
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbConcertData => {
+            if (!dbConcertData) {
+                res.status(404).json({ message: 'No post found with this id' });
+                return;
+            }
+            res.json(dbConcertData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
 
 module.exports = router;

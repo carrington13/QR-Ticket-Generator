@@ -1009,8 +1009,17 @@ video {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
-/* added css style variable from Manny's feature/styles */
+/* Custom CSS Start */
+#sign-up:hover {
+  color:#3b82f6;
 
+}
+
+#login:hover {
+  color:#3b82f6;
+}
+
+/* Custom CSS End */
 
 @-webkit-keyframes spin {
   to {
